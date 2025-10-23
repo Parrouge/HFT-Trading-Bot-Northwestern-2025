@@ -1,91 +1,81 @@
-# Northwestern Algorithmic Trading Competition 2025  
-### Team Submission — All Cases (HFT, Crypto Market-Making, and Manual Trading)  
+# Northwestern Algorithmic Trading Competition 2025 – HFT and Crypto Market-Making
+
 **Team:** Parry Nall & Ayush Chandra  
 **Ranking:** Top 10 / 50 (20%) in High Frequency Trading (HFT) Case  
-**Language:** C++  
-**Platform:** NU Fintech Exchange (Proprietary Simulation Environment)  
+October 18, 2025
 
 ---
 
-## Overview  
-This repository contains our team’s submission for the **Northwestern Algorithmic Trading Competition 2025**, organized by **NU Fintech**. We participated in **all three competition cases** — **High Frequency Trading (HFT)**, **Crypto Market-Making**, and **Manual Trading**.  
+## Project Overview
 
-Our primary success came from the **HFT case**, where we developed a **C++ adaptive market-making algorithm** that achieved a **top 10 finish (top 20%)** out of 50 teams. The algorithm was designed to handle high volatility, optimize order placement, and maintain consistent profitability through dynamic risk and inventory control.  
+This repository contains our team submission for the **Northwestern Algorithmic Trading Competition 2025**, organized by **NU Fintech**. We participated in both the **High Frequency Trading (HFT)** and **Crypto Market-Making** cases.
 
----
+Our adaptive **C++ market-making algorithm** was designed to:
 
-## Core Features  
-- **Multi-Asset Market Making:** Operates across BTC, ETH, and LTC with separate orderbooks, inventory management, and capital tracking.  
-- **Adaptive Quoting Logic:** Continuously refines bid/ask levels relative to the market spread, improving competitiveness and liquidity capture.  
-- **Inventory-Aware Control:** Dynamically biases quotes to reduce directional exposure when inventory deviates from balance.  
-- **Dynamic Order Sizing:** Adjusts trade sizes proportionally to capital and exposure, stabilizing performance during market swings.  
-- **Emergency Unwind Mechanism:** Triggers position reduction when exposure breaches defined safety limits using immediate-or-cancel limit orders.  
-- **Aggressive Quote Refreshing:** Refreshes all outstanding quotes on a set frequency to maintain optimal placement during volatility.  
+1. **Perform multi-asset market making** across BTC, ETH, and LTC with independent orderbooks, inventory tracking, and risk management.  
+2. **Implement adaptive quoting logic**, continuously adjusting bid/ask levels based on market spread and inventory exposure.  
+3. **Dynamically scale order sizes** to balance capital utilization and inventory risk.  
+4. **Trigger emergency unwind routines** when positions exceed maximum safety limits.  
+5. **Refresh quotes at a fixed frequency** to maintain optimal placement during high volatility.  
 
----
-
-## Technical Design  
-The algorithm was implemented within the official **NU Fintech C++20 simulation framework** and interacted directly with the live orderbook API.  
-
-**Main Components**  
-- `on_orderbook_update()` — Updates market data and triggers quote placement or refresh.  
-- `on_account_update()` — Tracks balance, inventory, and PnL; invokes unwind logic if overexposed.  
-- `on_trade_update()` — Records fills and updates realized/unrealized profits.  
-- `_quote()` — Places limit orders based on adaptive spread and market conditions.  
-- `_calculate_size()` — Determines appropriate order quantity based on risk tolerance.  
-- `_unwind_positions()` — Safely exits open positions to rebalance exposure.  
-- `_cancel_orders()` — Cancels all open orders to prevent stale activity before re-quoting.  
+Our strategy achieved **Top 10 / 50 (20%) in the HFT case** based on total Profit and Loss (PnL).
 
 ---
 
-## Hyperparameters  
+## Methods Overview
+
+- **on_orderbook_update()** — Updates best bid/ask prices and triggers aggressive quote placement.  
+- **on_account_update()** — Updates capital and inventory after fills; triggers emergency unwind if positions exceed thresholds.  
+- **on_trade_update()** — Tracks trade fills and realized/unrealized PnL.  
+- **_aggresive_quote()** — Places adaptive limit orders using spread improvement and inventory skew adjustments.  
+- **_calculate_size()** — Determines order size based on current inventory, exposure, and risk parameters.  
+- **_emergency_unwind()** — Reduces positions safely when exposure exceeds maximum limits.  
+- **_cancel_all()** — Cancels stale orders to prevent execution errors before re-quoting.
+
+---
+
+## Hyperparameters
+
 | Parameter | Default | Description |
-|------------|----------|-------------|
-| `base_order_size` | 25–30 | Default limit order size per asset. |
-| `spread_improvement` | 0.01 | Adjusts quotes closer to midprice for tighter spreads. |
-| `max_position` | 150–200 | Maximum allowed position per asset. |
-| `inventory_skew` | 0.01 | Controls how strongly inventory affects quoting direction. |
-| `quote_frequency` | 150–250 | Determines how frequently orders are refreshed. |
+|-----------|---------|-------------|
+| `base_order_size` | 25–30 | Default size for each order. |
+| `spread_improvement` | 0.01 | Tightens quotes relative to market spread. |
+| `max_position` | 150–200 | Caps maximum exposure per asset. |
+| `inventory_skew` | 0.01 | Adjusts quote bias to offset overexposure. |
+| `quote_frequency` | 150–250 | Sets how often quotes are refreshed. |
 
-These parameters were optimized through simulation runs to balance aggressiveness and risk management under various volatility scenarios.  
+These were tuned through backtesting and simulated competition runs to balance risk management and PnL performance.
 
 ---
 
-## Competition Context  
+## Competition Context
+
 **Event:** Northwestern Algorithmic Trading Competition 2025  
 **Organized by:** Northwestern Fintech (NUFT)  
 **Sponsors:** IMC Trading, Hudson River Trading (HRT), Five Rings, Chicago Trading Company, All Options  
 
-**Competition Cases:**  
-- **High Frequency Trading (HFT)** — Developed adaptive C++ market-making strategies for multi-asset trading under volatility (Placed Top 10 / 50).  
-- **Crypto Market-Making** — Focused on liquidity provision and arbitrage stability across simulated crypto exchanges.  
-- **Manual Trading** — Real-time human-driven case emphasizing technical analysis, execution timing, and behavioral finance.  
+**Cases Entered:**  
+- **High Frequency Trading (HFT)** — C++ adaptive market-making under high volatility (**Placed Top 10 / 50**).  
+- **Crypto Market-Making** — Focused on liquidity provision and volatility-based quoting strategies.  
 
-Our **HFT algorithm** was recognized for its performance, stability, and effective position management under fast-changing market conditions.  
+Both algorithms were executed live on the **NU Fintech Exchange**, where strategies were ranked by PnL and execution stability.
 
 ---
 
-## Results  
-- **Participated in:** All three cases (HFT, Crypto Market-Making, Manual Trading)  
+## Results
+
+- **Participated in:** HFT and Crypto Market-Making Cases  
 - **HFT Ranking:** Top 10 / 50 (20%)  
-- **Evaluation Metric:** Final Net PnL (Capital + Portfolio Value)  
-- **Execution Environment:** Live NU Fintech Exchange at The Hive, Northwestern University  
+- **Metric:** Final Net PnL (Capital + Portfolio Value)  
+- **Execution:** Live at The Hive, Northwestern University  
+
+![Competition Results Screenshot](/images/results.png)
 
 ---
 
-## Technical Notes  
-- Built entirely in **C++20** within NUFT’s provided framework.  
-- Uses only standard STL libraries (no external dependencies).  
-- Operates within competition limits (1GB memory, 0.5 CPU core).  
-- Prioritized consistent order management, low-latency execution, and deterministic behavior.  
+## Technical Notes
 
----
-
-## Acknowledgements  
-We thank the **NU Fintech Organizing Committee** and competition sponsors — **IMC Trading**, **Hudson River Trading**, **Five Rings**, **Chicago Trading Company**, and **All Options** — for providing an exceptional platform to learn, experiment, and apply quantitative trading strategies in a real-world simulation environment.  
-
----
-
-## Authors  
-**Parry Nall**  
-**Ayush Chandra**  
+- Built entirely in **C++20** within NUFT’s framework.  
+- Uses only standard STL (no external dependencies).  
+- Operates under strict competition constraints (≤1GB RAM, ≤0.5 CPU core).  
+- Prioritizes determinism, low latency, and consistent order management.
