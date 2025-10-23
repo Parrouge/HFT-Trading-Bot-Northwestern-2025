@@ -69,7 +69,7 @@ Both algorithms were executed live on the **NU Fintech Exchange**, where strateg
 - **Metric:** Final Net PnL (Capital + Portfolio Value)  
 - **Execution:** Live at The Hive, Northwestern University  
 
-![Competition Results Screenshot](/images/results.png)
+![Competition Results Screenshot](/image.png)
 
 ---
 
