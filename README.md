@@ -67,7 +67,6 @@ Both algorithms were executed live on the **NU Fintech Exchange**, where strateg
 - **Participated in:** HFT and Crypto Market-Making Cases  
 - **HFT Ranking:** Top 10 / 50 (20%)  
 - **Metric:** Final Net PnL (Capital + Portfolio Value)  
-- **Execution:** Live at The Hive, Northwestern University  
 
 ![Competition Results Screenshot](/image.png)
 
