@@ -71,10 +71,3 @@ Both algorithms were executed live on the **NU Fintech Exchange**, where strateg
 ![Competition Results Screenshot](/image.png)
 
 ---
-
-## Technical Notes
-
-- Built entirely in **C++20** within NUFT’s framework.  
-- Uses only standard STL (no external dependencies).  
-- Operates under strict competition constraints (≤1GB RAM, ≤0.5 CPU core).  
-- Prioritizes determinism, low latency, and consistent order management.
